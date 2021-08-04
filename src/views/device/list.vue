@@ -20,34 +20,54 @@
       <el-table-column label="ID" width="95" align="center">
         <template slot-scope="scope">
           <!--  scope.row : 获取当前行数据 -->
-          {{ scope.row.siteId }}
+          {{ scope.row.deviceId }}
         </template>
       </el-table-column>
-      <el-table-column label="工地名称" width="500" align="center">
+      <el-table-column label="设备状态" width="95" align="center">
+        <template slot-scope="scope">
+
+          <span>{{ scope.row.deviceStatus }}
+                {{ scope.row.deviceStatus==1?true:false }}
+          </span>
+        </template>
+      </el-table-column>
+      <el-table-column label="设备名称" width="180" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.deviceName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="设备类型" width="180" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.deviceType }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="所属工地" width="180" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.siteName }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="工地ID" width="95" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.siteId }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作"  align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row.siteId)">
+          <el-button type="primary" size="mini" @click="handleUpdate(row.deviceId)">
             修改
           </el-button>
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row.siteId)">
+          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row.deviceId)">
             删除
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-      <pagination style="position: absolute;top: 350px" v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
   </div>
 </template>
 
 <script>
-  import Pagination from '@/components/Pagination'
 
   export default {
-  components: { Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -60,13 +80,9 @@
   },
   data() {
     return {
+
       list: null,
       listLoading: true,
-      total: 0,
-      listQuery: {
-        page: 1,
-        limit: 5
-      }
     }
   },
     //钩子页面，vue对象创建完成后会被调用
@@ -78,7 +94,7 @@
       this.$router.push("/site/update/" + siteId);
     },
     handleDelete(siteId){
-      let url = 'http://localhost:80/site/sites/'+siteId;
+      let url = 'http://localhost:80/device/sites/'+siteId;
       this.axios.delete(url).then(res=>{
         let result = res.data;
         if (result.success){
@@ -99,13 +115,14 @@
 
     fetchData() {
       // eslint-disable-next-line no-unused-vars
+      console.log(1);
       var userId = this.$store.getters.user.userId
-      var url = 'http://localhost:80/site/sites/' + userId+"/"+this.listQuery.page + "/" + this.listQuery.limit;
+      var url = 'http://localhost:80/device/devices/' + userId;
       this.axios.get(url).then(res => {
-        let vo = res.data;
-        this.list = vo.data.records;
-        this.total = vo.data.total;
-        console.log(this.list);
+        this.list = res.data.data
+        console.log(this.list)
+        this.listLoading = false
+
         //不要加载图标
         this.listLoading = false;
       })

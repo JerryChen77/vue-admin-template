@@ -79,7 +79,31 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/device',
+    component: Layout,
+    name: '设备管理',
+    meta: { title: '设备管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: '查看设备',
+        component: () => import('@/views/device/list'),
+        meta: { title: '设备列表  ', icon: 'table' }
+      },
+      {
+        path: 'update/:siteId',
+        name: '更改设备',
+        component: () => import('@/views/device/update'),
+      },
+      {
+        path: 'add',
+        name: '添加设备',
+        component: () => import('@/views/device/add'),
+        meta: { title: '添加设备', icon: 'tree' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
