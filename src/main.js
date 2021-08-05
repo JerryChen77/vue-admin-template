@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
   let isLogin0 = sessionStorage.getItem('isLogin')
   console.log('main.js中的isLogin===='+isLogin0)
   // eslint-disable-next-line eqeqeq
-  if (to.path == '/dashboard') {
+  if (to.path == '/dashboard'||to.path == '/') {
     // eslint-disable-next-line eqeqeq
     if (JSON.parse(sessionStorage.getItem("isLogin")) == null) {
       console.log('进入isLogin == null')

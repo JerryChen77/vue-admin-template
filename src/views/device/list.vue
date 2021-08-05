@@ -17,7 +17,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="ID" width="95" align="center">
+      <el-table-column label="设备ID" width="95" align="center">
         <template slot-scope="scope">
           <!--  scope.row : 获取当前行数据 -->
           {{ scope.row.deviceId }}
@@ -101,8 +101,8 @@
             type:'success'
           });
           setTimeout(() => {
-            // this.$router.go(0)
-            this.reload()
+            this.$router.go(0)
+            // this.reload()  这个方法也可以
             },300);
         }else {
           this.$message.error(result.message);

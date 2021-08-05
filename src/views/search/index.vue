@@ -1,19 +1,14 @@
 <template>
   <div class="app-container">
 <!--  搜索部分  -->
-    <el-form ref="form" :model="search" label-width="120px">
+    <p style="margin-left: 10%;color: #97a8be">*支持查询字段：工地名称、设备名称、设备类型</p>
+    <el-form ref="form" :model="search" label-width="120px" style="margin-right: 30%">
+
       <el-form-item label="搜索">
         <el-input v-model="search.name" />
       </el-form-item>
 
-<!--      <el-form-item label="类别">-->
-<!--        <el-radio-group v-model="search.resource">-->
-<!--          <el-radio label="工地" value="site" />-->
-<!--          <el-radio label="设备" value="device" />-->
-<!--        </el-radio-group>-->
-<!--      </el-form-item>-->
-
-      <el-form-item>
+      <el-form-item >
         <el-button type="primary" @click="onSubmit">搜索</el-button>
       </el-form-item>
     </el-form>
@@ -26,6 +21,7 @@
       border
       fit
       highlight-current-row
+      style="margin-left: 5%"
     >
 
       <el-table-column align="center" label="序号" width="95">
@@ -58,7 +54,7 @@
 
       <el-table-column label="设备ID" width="95" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.deviceId }}</span>
+          <span >{{ scope.row.deviceId }}</span>
         </template>
       </el-table-column>
 
@@ -80,65 +76,6 @@
         </template>
       </el-table-column>
     </el-table>
-
-
-
-
-
-
-
-
-
-<!--&lt;!&ndash;   设备信息   &ndash;&gt;-->
-<!--    <el-table-->
-<!--      v-loading="listLoading"-->
-<!--      :data="devices"-->
-<!--      element-loading-text="Loading"-->
-<!--      border-->
-<!--      fit-->
-<!--      highlight-current-row-->
-<!--    >-->
-<!--      <el-table-column align="center" label="序号" width="95">-->
-<!--        &lt;!&ndash; slot-scope : 插槽-->
-<!--            scope : 当前行对象的引用-->
-<!--        &ndash;&gt;-->
-<!--        <template slot-scope="scope">-->
-<!--          {{ scope.$index + 1 }}-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-
-<!--      <el-table-column label="ID" width="95" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          &lt;!&ndash;  scope.row : 获取当前行数据 &ndash;&gt;-->
-<!--          {{ scope.row.deviceId }}-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="设备状态" width="95" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.deviceStatus }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="设备名称" width="180" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.deviceName }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="设备类型" width="180" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.deviceType }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="所属工地" width="180" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.siteName }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="工地ID" width="95" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ scope.row.siteId }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--    </el-table>-->
 
   </div>
 </template>
@@ -172,11 +109,6 @@ export default {
           });
           this.sites=result.data;
           this.listLoading=false;
-          // if (resource==site){
-          //   this.sites=result.data
-          // }else {
-          //   this.device=result.data
-          // }
         }else {
           this.$message.error(result.message);
         }
@@ -190,7 +122,6 @@ export default {
         type: 'warning'
       })
     }
-
 }
 </script>
 

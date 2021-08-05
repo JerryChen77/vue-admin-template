@@ -26,7 +26,6 @@
           <!--          遍历输出，-->
           <el-option v-for="val in this.sites" :key="val.siteId" :value="val.siteId" :label="val.siteName" />
         </el-select>
-<!--        <el-input v-model="device.siteId" />-->
       </el-form-item>
 
       <el-form-item>
