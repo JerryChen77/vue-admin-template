@@ -39,7 +39,7 @@
         </template>
       </el-table-column>
     </el-table>
-      <pagination style="position: absolute;top: 350px" v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+      <pagination style="position: absolute;bottom: 0px;left: 25%;" v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
   </div>
 </template>
 

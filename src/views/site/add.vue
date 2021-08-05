@@ -4,8 +4,8 @@
       <el-form-item label="工地名称">
         <el-input v-model="site.siteName"/>
       </el-form-item>
-      <el-form-item label="工地所属">
-        <el-select v-model="site.userId" placeholder="please select your zone" >
+      <el-form-item label="所属用户">
+        <el-select v-model="site.userId" placeholder="请选择用户" >
 <!--          遍历输出，-->
           <el-option v-for="val in this.users" :key="val.userId" :value="val.userId" :label="val.userName" />
         </el-select>
@@ -24,7 +24,7 @@ export default {
     return {
       site: {
         siteName: '',
-        userId: 0
+        userId: ''
       },
       users:[]
     }

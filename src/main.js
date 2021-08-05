@@ -39,6 +39,26 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  let isLogin0 = sessionStorage.getItem('isLogin')
+  console.log('main.js中的isLogin===='+isLogin0)
+  // eslint-disable-next-line eqeqeq
+  if (to.path == '/dashboard') {
+    // eslint-disable-next-line eqeqeq
+    if (JSON.parse(sessionStorage.getItem("isLogin")) == null) {
+      console.log('进入isLogin == null')
+      next({ path: '/login' })
+    }else if(JSON.parse(sessionStorage.getItem("isLogin"))==true){
+      console.log('进入isLogin == true')
+      next()
+    }
+  }else if(to.path =='/logout'){
+    sessionStorage.clear();
+    next({path:'/login'})
+  }
+  // 下一个路由
+  next()
+})
 new Vue({
   el: '#app',
   router,

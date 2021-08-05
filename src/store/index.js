@@ -6,7 +6,9 @@ import settings from './modules/settings'
 import user from './modules/user'
 
 Vue.use(Vuex)
-
+function storeLocalStore(state) {
+  window.localStorage.setItem('userMsg', JSON.stringify(state))
+}
 // 全局 state 对象，用于保存所有组件的公共数据
 const state = {
   // 定义一个 user 对象
@@ -47,7 +49,8 @@ const store = new Vuex.Store({
   state,
   getters,
   mutations,
-  actions
+  actions,
+  storeLocalStore
 })
 
 export default store

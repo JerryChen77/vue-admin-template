@@ -21,7 +21,7 @@
       <el-form-item label="设备类型">
         <el-input v-model="device.deviceType" />
       </el-form-item>
-      <el-form-item label="所属工地Id">
+      <el-form-item label="所属工地">
         <el-select v-model="device.siteId" placeholder="请选择" >
           <!--          遍历输出，-->
           <el-option v-for="val in this.sites" :key="val.siteId" :value="val.siteId" :label="val.siteName" />

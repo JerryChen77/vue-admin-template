@@ -56,6 +56,7 @@
 
 export default {
   name: 'Login',
+
   data() {
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
@@ -104,6 +105,7 @@ export default {
             message: vo.message,
             type: 'success'
           })
+          sessionStorage.setItem('isLogin', true)
           setTimeout(() => {
             this.$store.dispatch('asyncUpdateUser', vo.data)
             this.$router.push('/')

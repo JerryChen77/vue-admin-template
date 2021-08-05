@@ -4,18 +4,27 @@
       <el-form-item label="设备名称">
         <el-input v-model="device.deviceName" />
       </el-form-item>
-      <el-form-item label="设备状态">
-
-        <el-select v-model="device.deviceStatus" placeholder="请选择" >
-          <el-option  value="1" label="启用" />
-          <el-option  value="2" label="禁用" />
-        </el-select>
-<!--        <el-input v-model="device.deviceStatus" />-->
+<!--      <el-form-item label="设备状态">-->
+<!--        <el-select v-model="device.deviceStatus" placeholder="请选择" >-->
+<!--          <el-option  value="1" label="启用" />-->
+<!--          <el-option  value="2" label="禁用" />-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
+      <el-form-item label="是否启用">
+        <el-tooltip :content="'Switch value: ' + device.deviceStatus" placement="top">
+          <el-switch
+            v-model="device.deviceStatus"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-value="1"
+            inactive-value="0">
+          </el-switch>
+        </el-tooltip>
       </el-form-item>
       <el-form-item label="设备类型">
         <el-input v-model="device.deviceType" />
       </el-form-item>
-      <el-form-item label="所属工地Id">
+      <el-form-item label="所属工地">
         <el-select v-model="device.siteId" placeholder="请选择" >
           <!--          遍历输出，-->
           <el-option v-for="val in this.sites" :key="val.siteId" :value="val.siteId" :label="val.siteName" />
@@ -35,9 +44,9 @@ export default {
     return {
       device: {
         deviceName: '',
-        deviceStatus: 0,
+        deviceStatus: '',
         deviceType:'',
-        siteId:0,
+        siteId:'',
       },
       sites:[]
     }
