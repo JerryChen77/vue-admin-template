@@ -25,10 +25,7 @@
       </el-table-column>
       <el-table-column label="设备状态" width="95" align="center">
         <template slot-scope="scope">
-
-          <span>{{ scope.row.deviceStatus }}
-                {{ scope.row.deviceStatus==1?true:false }}
-          </span>
+          <span>{{ scope.row.deviceStatus ==1?'在线':scope.row.deviceStatus==0?'离线':''}}</span>
         </template>
       </el-table-column>
       <el-table-column label="设备名称" width="180" align="center">
@@ -53,10 +50,10 @@
       </el-table-column>
       <el-table-column label="操作"  align="center">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row.deviceId)">
+          <el-button type="primary"  @click="handleUpdate(row.deviceId)">
             修改
           </el-button>
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row.deviceId)">
+          <el-button v-if="row.status!='deleted'"  type="danger" @click="handleDelete(row.deviceId)">
             删除
           </el-button>
         </template>
@@ -68,6 +65,7 @@
 <script>
 
   export default {
+    inject:['reload'],
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -90,11 +88,11 @@
     this.fetchData()
   },
   methods: {
-    handleUpdate(siteId){
-      this.$router.push("/site/update/" + siteId);
+    handleUpdate(deviceId){
+      this.$router.push("/device/update/" + deviceId);
     },
-    handleDelete(siteId){
-      let url = 'http://localhost:80/device/sites/'+siteId;
+    handleDelete(deviceId){
+      let url = 'http://localhost:80/device/devices/'+deviceId;
       this.axios.delete(url).then(res=>{
         let result = res.data;
         if (result.success){
@@ -103,7 +101,8 @@
             type:'success'
           });
           setTimeout(() => {
-            this.$router.go(0)
+            // this.$router.go(0)
+            this.reload()
             },300);
         }else {
           this.$message.error(result.message);
@@ -120,7 +119,6 @@
       var url = 'http://localhost:80/device/devices/' + userId;
       this.axios.get(url).then(res => {
         this.list = res.data.data
-        console.log(this.list)
         this.listLoading = false
 
         //不要加载图标

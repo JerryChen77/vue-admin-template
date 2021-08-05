@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="site" label-width="120px">
-      <el-form-item label="序号" >
+      <el-form-item label="工地ID" >
         <el-input v-model="site.siteId" :disabled="true"/>
       </el-form-item>
       <el-form-item label="工地名称">
@@ -15,7 +15,7 @@
 
       <el-form-item>
         <el-button type="primary" @click="update()">修改</el-button>
-        <el-button @click="onCancel">取消</el-button>
+        <el-button type="primary" @click="onCancel()">取消</el-button>
       </el-form-item>
     </el-form>
   </div>

@@ -12,6 +12,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit()">添加</el-button>
+        <el-button type="primary" @click="onCancel()">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -60,7 +61,10 @@ export default {
       this.$message({
         message: 'cancel!',
         type: 'warning'
-      })
+      });
+      setTimeout(()=>{
+        this.$router.push("/site/list");
+      },500);
     }
   }
 }

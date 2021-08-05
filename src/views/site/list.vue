@@ -47,7 +47,8 @@
   import Pagination from '@/components/Pagination'
 
   export default {
-  components: { Pagination },
+    inject:['reload'],
+    components: { Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -78,21 +79,25 @@
       this.$router.push("/site/update/" + siteId);
     },
     handleDelete(siteId){
-      let url = 'http://localhost:80/site/sites/'+siteId;
-      this.axios.delete(url).then(res=>{
-        let result = res.data;
-        if (result.success){
-          this.$message({
-            message:result.message,
-            type:'success'
-          });
-          setTimeout(() => {
-            this.$router.go(0)
+      var ret =confirm("工地相关设备将一同删除，请确认：");
+      if (ret){
+        let url = 'http://localhost:80/site/sites/'+siteId;
+        this.axios.delete(url).then(res=>{
+          let result = res.data;
+          if (result.success){
+            this.$message({
+              message:result.message,
+              type:'success'
+            });
+            setTimeout(() => {
+              // this.$router.go(0)
+              this.reload()
             },300);
-        }else {
-          this.$message.error(result.message);
-        }
-      })
+          }else {
+            this.$message.error(result.message);
+          }
+        })
+      }
     },
 
 
