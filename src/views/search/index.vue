@@ -66,7 +66,7 @@
 
       <el-table-column label="设备状态" width="180" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.deviceStatus}}</span>
+          <span>{{ scope.row.deviceStatus ==1?'在线':scope.row.deviceStatus==0?'离线':''}}</span>
         </template>
       </el-table-column>
 
@@ -76,7 +76,6 @@
         </template>
       </el-table-column>
     </el-table>
-
   </div>
 </template>
 

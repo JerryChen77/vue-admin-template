@@ -31,10 +31,10 @@
         </el-table-column>
         <el-table-column label="操作"  align="center">
           <template slot-scope="{row,$index}">
-            <el-button type="primary" size="mini" @click="handleUpdate(row.siteId)">
+            <el-button type="primary" @click="handleUpdate(row.siteId)">
               修改
             </el-button>
-            <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row.siteId)">
+            <el-button v-if="row.status!='deleted'"  type="danger" @click="handleDelete(row.siteId)">
               删除
             </el-button>
           </template>
@@ -113,7 +113,6 @@
         let vo = res.data;
         this.list = vo.data.records;
         this.total = vo.data.total;
-        console.log(this.list);
         //不要加载图标
         this.listLoading = false;
       })

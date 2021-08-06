@@ -17,7 +17,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$store.getters.user)
     this.user.loginName = this.$store.getters.user.userName
   },
   computed: {

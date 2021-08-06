@@ -46,7 +46,7 @@ export default {
         deviceStatus:1,
         deviceType:'',
         siteId:0,
-        siteName:''
+        // siteName:''
       },
       sites:[]
     }
