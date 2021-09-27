@@ -53,6 +53,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }else if(to.path =='/logout'){
+    localStorage.clear();
     sessionStorage.clear();
     next({path:'/login'})
   }

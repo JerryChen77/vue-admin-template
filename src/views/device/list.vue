@@ -92,22 +92,25 @@
       this.$router.push("/device/update/" + deviceId);
     },
     handleDelete(deviceId){
-      let url = 'http://localhost:80/device/devices/'+deviceId;
-      this.axios.delete(url).then(res=>{
-        let result = res.data;
-        if (result.success){
-          this.$message({
-            message:result.message,
-            type:'success'
-          });
-          setTimeout(() => {
-            this.$router.go(0)
-            // this.reload()  这个方法也可以
-            },300);
-        }else {
-          this.$message.error(result.message);
-        }
-      })
+      var ret =confirm("请确定是否删除：");
+      if (ret) {
+        let url = 'http://localhost:80/device/devices/' + deviceId;
+        this.axios.delete(url).then(res => {
+          let result = res.data;
+          if (result.success) {
+            this.$message({
+              message: result.message,
+              type: 'success'
+            });
+            setTimeout(() => {
+              this.$router.go(0)
+              // this.reload()  这个方法也可以
+            }, 300);
+          } else {
+            this.$message.error(result.message);
+          }
+        })
+      }
     },
 
 

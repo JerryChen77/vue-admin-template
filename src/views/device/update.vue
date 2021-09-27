@@ -7,7 +7,7 @@
       <el-form-item label="设备名称">
         <el-input v-model="device.deviceName" />
       </el-form-item>
-      <el-form-item label="是否启用">
+      <el-form-item label="是否在线">
         <el-tooltip :content="'Switch value: ' + device.deviceStatus" placement="top">
           <el-switch
             v-model="device.deviceStatus"

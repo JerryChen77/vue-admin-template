@@ -22,7 +22,6 @@ export default {
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('userMsg', JSON.stringify(this.$store.state))
     })
-    console.log(localStorage.getItem('userMsg'))
   },
   methods: {
     reload() {

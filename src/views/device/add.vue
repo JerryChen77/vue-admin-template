@@ -10,7 +10,7 @@
 <!--          <el-option  value="2" label="禁用" />-->
 <!--        </el-select>-->
 <!--      </el-form-item>-->
-      <el-form-item label="是否启用">
+      <el-form-item label="是否在线">
         <el-tooltip :content="'Switch value: ' + device.deviceStatus" placement="top">
           <el-switch
             v-model="device.deviceStatus"
